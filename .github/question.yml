@@ -1,0 +1,69 @@
+name: Question/Support
+description: Ask a question or get help with the project
+title: "[QUESTION] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question? We're here to help! Please check the README and documentation first.
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Question Topic
+      description: What is your question about?
+      options:
+        - Model Training
+        - Model Deployment
+        - Hardware Setup (ZED Camera)
+        - Hardware Setup (Jetson)
+        - Performance Optimization
+        - Dataset Preparation
+        - LaTeX Compilation
+        - General Usage
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please describe your question in detail
+      placeholder: What would you like to know?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide context about what you're trying to achieve
+      placeholder: |
+        - What are you trying to accomplish?
+        - What have you tried so far?
+        - What specific challenges are you facing?
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment (if applicable)
+      description: Information about your setup
+      placeholder: |
+        - OS: [e.g., Ubuntu 20.04]
+        - Hardware: [e.g., RTX 3070, Jetson Xavier NX]
+        - Python/PyTorch versions
+        - Any relevant software versions
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have read the README.md
+          required: true
+        - label: I have checked existing issues for similar questions
+          required: true
+        - label: I have provided sufficient context for my question
+          required: true
