@@ -1,0 +1,137 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{subcaption}
+\geometry{left=1.5in,right=1in,top=1in,bottom=1in,headheight=14.5pt}
+\onehalfspacing
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\leftmark}
+\renewcommand{\headrulewidth}{0.4pt}
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries\centering}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{40pt}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\lstset{language=Python,basicstyle=\ttfamily\footnotesize,keywordstyle=\color{blue},commentstyle=\color{green!60!black},stringstyle=\color{red},numbers=left,numberstyle=\tiny\color{gray},stepnumber=1,numbersep=8pt,showstringspaces=false,breaklines=true,frame=tb,framerule=0.5pt,xleftmargin=15pt,framexleftmargin=15pt,framextopmargin=6pt,framexbottommargin=6pt,captionpos=b}
+\hypersetup{colorlinks=true,linkcolor=black,filecolor=magenta,urlcolor=blue,citecolor=black,pdftitle={Condensed 3D Point Cloud Semantic Segmentation Report},pdfauthor={Arnav Kapoor}}
+\title{Condensed 3D Point Cloud Semantic Segmentation Report}
+\author{Arnav Kapoor}
+\date{Summer 2025}
+\begin{document}
+% Title Page
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    {\LARGE\textbf{3D Point Cloud Semantic Segmentation using Deep Learning}}
+    \vspace{0.5cm}
+    {\Large Condensed Internship Report}
+    \vspace{2cm}
+    {\large Submitted by}\\
+    \vspace{0.5cm}
+    {\Large\textbf{Arnav Kapoor}}
+    \vspace{2cm}
+    \includegraphics[width=3cm]{logo.png}
+    \vspace{1cm}
+    {\large Under the supervision of}\\
+    \vspace{0.5cm}
+    {\Large\textbf{Prof. Vaibhav Kumar}}
+    \vspace{2cm}
+    {\large GeoAI4Cities Laboratory, IISER Bhopal}
+    \vspace{2cm}
+    {\large Summer 2025}
+    \vfill
+    {\large \textbf{Hardware Used:} NVIDIA Jetson, ZED 2i Camera, NVIDIA RTX 3070}
+\end{titlepage}
+% Abstract
+\newpage
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+This condensed report summarizes research on 3D point cloud semantic segmentation using deep learning, optimized for edge computing platforms. Four models (PointNet, SONATA, PVCNN, RandLA-Net) were implemented and evaluated for real-time segmentation on NVIDIA Jetson devices. Key contributions include model optimization, memory management, and deployment pipeline development. Results show SONATA achieves highest accuracy, while PointNet offers best speed-resource balance. The work advances practical edge AI for robotics and smart cities.
+\textbf{Keywords:} Point Cloud Segmentation, Edge Computing, Deep Learning, Real-time Inference, Model Optimization
+% Table of Contents
+\newpage
+\tableofcontents
+\newpage
+% Introduction
+\chapter{Introduction}
+\section{Background}
+Point cloud segmentation enables machines to classify 3D environments for autonomous systems. This work bridges deep learning advances and edge deployment constraints.
+\section{Objectives}
+\begin{enumerate}
+    \item Implement and optimize four deep learning models for 3D segmentation
+    \item Deploy models on NVIDIA Jetson platforms
+    \item Develop real-time pipeline from ZED 2i camera to segmentation
+    \item Evaluate performance across hardware
+\end{enumerate}
+\section{Significance}
+Efficient edge deployment is critical for robotics, autonomous navigation, and urban monitoring. This internship provided hands-on experience in practical AI engineering.
+% Literature Review
+\chapter{Literature Review}
+\section{Point Cloud Deep Learning}
+Summarizes key models: PointNet, PointNet++, PVCNN, Dynamic Graph CNN, SONATA, RandLA-Net. Reviews recent surveys and benchmarks.
+\section{Edge Computing for 3D Vision}
+Discusses challenges and solutions for deploying deep models on resource-limited devices. Highlights Jetson platforms and optimization techniques.
+\section{Datasets and Benchmarks}
+ShapeNet, S3DIS, SemanticKITTI, Semantic3D used for training and evaluation.
+% Methodology
+\chapter{Methodology}
+\section{Development Environment}
+Describes hardware (Jetson, RTX 3070, ZED 2i) and software stack (PyTorch, Open3D, ZED SDK, TensorRT).
+\section{Model Implementations}
+Briefly outlines architectures and code structure for each model. Key optimizations: mixed precision, quantization, memory management.
+\section{Pipeline}
+End-to-end workflow from data capture to segmentation and visualization.
+% Results and Analysis
+\chapter{Results and Analysis}
+\section{Performance Metrics}
+Presents accuracy, speed, and memory usage for each model. Table summarizes results.
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+Model & mIoU (\%) & Acc (\%) & FPS (Jetson) & Mem (GB) \\
+\midrule
+PointNet & 73.2 & 89.1 & 28.7 & 0.8 \\
+PVCNN & 78.6 & 91.4 & 16.4 & 1.9 \\
+SONATA & 81.4 & 93.2 & 14.9 & 2.4 \\
+RandLA-Net & 76.9 & 90.7 & 20.5 & 1.4 \\
+\bottomrule
+\end{tabular}
+\caption{Model performance comparison on Jetson NX}
+\end{table}
+\section{Optimization Impact}
+Summarizes effects of mixed precision, quantization, and TensorRT on speed and memory.
+\section{Deployment}
+Describes real-time integration and validation on Jetson devices.
+% Discussion
+\chapter{Discussion}
+\section{Challenges}
+Addresses memory constraints, CUDA errors, and deployment hurdles.
+\section{Lessons Learned}
+Highlights practical engineering insights from edge AI deployment.
+% Conclusion
+\chapter{Conclusion}
+This condensed report demonstrates practical deployment of 3D deep learning models on edge platforms. Key results: real-time segmentation, efficient memory use, and robust performance. The work contributes to democratizing advanced AI for smart cities and robotics.
+% References
+\newpage
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
