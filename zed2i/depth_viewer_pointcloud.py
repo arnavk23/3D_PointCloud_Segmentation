@@ -24,4 +24,3 @@ point_cloud.write(point_cloud_filename)
 
 print(f"Point cloud saved to {point_cloud_filename}")
 zed.close()
-

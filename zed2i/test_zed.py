@@ -1,6 +1,7 @@
 import pyzed.sl as sl
 import os
 
+
 def main():
     zed = sl.Camera()
 
@@ -27,11 +28,13 @@ def main():
     while frame_count < max_frames:
         if zed.grab(runtime_params) == sl.ERROR_CODE.SUCCESS:
             zed.retrieve_image(image, sl.VIEW.LEFT)
-            
+
             filename = os.path.join(output_dir, f"frame_{frame_count + 1}.png")
             image.write(filename)  # Save the image to disk
-            
-            print(f"Captured frame {frame_count + 1}, saved to: {os.path.abspath(filename)}")
+
+            print(
+                f"Captured frame {frame_count + 1}, saved to: {os.path.abspath(filename)}"
+            )
             frame_count += 1
         else:
             print("Frame grab failed.")
@@ -39,6 +42,6 @@ def main():
     zed.close()
     print("Camera closed.")
 
+
 if __name__ == "__main__":
     main()
-

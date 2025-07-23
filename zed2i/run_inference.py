@@ -14,29 +14,30 @@ pcd.points = o3d.utility.Vector3dVector(points)
 pcd.colors = o3d.utility.Vector3dVector(colors)
 o3d.io.write_point_cloud("zed_output.ply", pcd)
 
+
 def main():
     # Load the point cloud
     pcd = o3d.io.read_point_cloud("zed_output.ply")
     points = np.asarray(pcd.points).astype(np.float32)
-    
+
     # Dummy labels to avoid KeyError
     dummy_labels = np.zeros(points.shape[0], dtype=np.int64)
 
     # Initialize model and pipeline
     model = RandLANet(num_classes=19)
-    pipeline = SemanticSegmentation(model=model, device='cpu')
+    pipeline = SemanticSegmentation(model=model, device="cpu")
 
     # Use 'point' key (singular), as expected by RandLANet preprocess
     data = {
-        'point': points,
-        'label': dummy_labels,
+        "point": points,
+        "label": dummy_labels,
     }
 
     # Run inference
     result = pipeline.run_inference(data)
 
     # Get predicted labels and color map
-    labels = result['predict_labels']
+    labels = result["predict_labels"]
     max_label = labels.max()
     cmap = plt.get_cmap("tab20")
     colors = cmap(labels / (max_label if max_label > 0 else 1))[:, :3]
@@ -45,6 +46,6 @@ def main():
     pcd.colors = o3d.utility.Vector3dVector(colors)
     o3d.visualization.draw_geometries([pcd], window_name="Semantic Segmentation")
 
+
 if __name__ == "__main__":
     main()
-
