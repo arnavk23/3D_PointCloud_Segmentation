@@ -5,7 +5,7 @@ with open("data/shapenet_part/train_test_split/shuffled_test_file_list.json", "r
 
 cleaned = []
 for path in raw:
-    parts = path.strip().split('/')
+    parts = path.strip().split("/")
     if len(parts) == 3:
         category_map = {
             "Airplane": "02691156",
@@ -23,7 +23,7 @@ for path in raw:
             "Pistol": "03948459",
             "Rocket": "04099429",
             "Skateboard": "04225987",
-            "Table": "04379243"
+            "Table": "04379243",
         }
         cat, _, file_id = parts
         if cat in category_map:
@@ -33,6 +33,7 @@ for path in raw:
     else:
         print(f"Malformed path: {path}")
 
-with open("data/shapenet_part/train_test_split/shuffled_test_file_list_clean.json", "w") as f:
+with open(
+    "data/shapenet_part/train_test_split/shuffled_test_file_list_clean.json", "w"
+) as f:
     json.dump(cleaned, f, indent=2)
-

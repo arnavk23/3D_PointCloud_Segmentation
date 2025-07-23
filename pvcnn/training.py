@@ -5,30 +5,34 @@ from torch.utils.data import Dataset, DataLoader
 import numpy as np
 
 # Set CUDA_HOME if needed (before importing any CUDA-dependent libs)
-os.environ['CUDA_HOME'] = '/usr/local/cuda'
+os.environ["CUDA_HOME"] = "/usr/local/cuda"
 
 # Import your PVConv model - adjust this import path as needed
 from modules import PVConv
+
 
 # === Step 1: Unzip dataset ===
 def unzip_dataset(zip_path, extract_to):
     if not os.path.exists(extract_to):
         print(f"Extracting dataset from {zip_path} to {extract_to}...")
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        with zipfile.ZipFile(zip_path, "r") as zip_ref:
             zip_ref.extractall(extract_to)
         print("Extraction complete.")
     else:
         print(f"Dataset already extracted at {extract_to}.")
 
+
 # === Step 2: Dataset Class ===
 class PointCloudDataset(Dataset):
     def __init__(self, data_dir):
         super().__init__()
-        self.cloud_dir = os.path.join(data_dir, 'clouds')
-        self.label_dir = os.path.join(data_dir, 'labels')
+        self.cloud_dir = os.path.join(data_dir, "clouds")
+        self.label_dir = os.path.join(data_dir, "labels")
         self.cloud_files = sorted(os.listdir(self.cloud_dir))
         self.label_files = sorted(os.listdir(self.label_dir))
-        assert len(self.cloud_files) == len(self.label_files), "Mismatch in clouds and labels count"
+        assert len(self.cloud_files) == len(
+            self.label_files
+        ), "Mismatch in clouds and labels count"
 
     def __len__(self):
         return len(self.cloud_files)
@@ -47,11 +51,12 @@ class PointCloudDataset(Dataset):
 
         return points, labels
 
+
 # === Step 3: Main training function ===
 def main():
     # Paths - change these to your files
-    zip_path = '/home/intern/Downloads/data_object_label_2.zip'  # Your zip file path
-    extract_to = 'dataset_extracted'
+    zip_path = "/home/intern/Downloads/data_object_label_2.zip"  # Your zip file path
+    extract_to = "dataset_extracted"
     unzip_dataset(zip_path, extract_to)
 
     # Setup device
@@ -63,8 +68,8 @@ def main():
     dataloader = DataLoader(dataset, batch_size=4, shuffle=True, num_workers=2)
 
     # Model params - adjust these based on your PVConv version
-    in_channels = 3      # e.g. xyz only, or xyz+features
-    out_channels = 32    # feature dimension inside model
+    in_channels = 3  # e.g. xyz only, or xyz+features
+    out_channels = 32  # feature dimension inside model
     kernel_size = 3
     resolution = 0.1
 
@@ -75,8 +80,8 @@ def main():
     model.train()
     for epoch in range(1):  # just 1 epoch example
         for points, labels in dataloader:
-            points = points.to(device)          # (B, N, 3 or features)
-            labels = labels.to(device)          # (B, N)
+            points = points.to(device)  # (B, N, 3 or features)
+            labels = labels.to(device)  # (B, N)
 
             coords = points[..., :3]
             features = points[..., 3:] if points.shape[-1] > 3 else coords
@@ -84,7 +89,7 @@ def main():
             inputs = (features, coords)
 
             optimizer.zero_grad()
-            outputs = model(inputs)              # forward pass
+            outputs = model(inputs)  # forward pass
 
             # outputs shape depends on your model, example:
             # assume (B, num_classes, N)
@@ -97,11 +102,11 @@ def main():
             print(f"Loss: {loss.item():.4f}")
 
     # Save checkpoint
-    checkpoint_path = 'checkpoints/best_model.pth'
-    os.makedirs('checkpoints', exist_ok=True)
-    torch.save({'model_state_dict': model.state_dict()}, checkpoint_path)
+    checkpoint_path = "checkpoints/best_model.pth"
+    os.makedirs("checkpoints", exist_ok=True)
+    torch.save({"model_state_dict": model.state_dict()}, checkpoint_path)
     print(f"Checkpoint saved to {checkpoint_path}")
+
 
 if __name__ == "__main__":
     main()
-

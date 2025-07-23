@@ -2,6 +2,7 @@ import open3d as o3d
 import numpy as np
 import torch as torch
 
+
 def load_ply_vertices_only(ply_path):
     # Try reading as mesh and get vertices only
     try:
@@ -14,7 +15,7 @@ def load_ply_vertices_only(ply_path):
         print(f"Failed to load mesh vertices only: {e}")
         # fallback: try read_point_cloud ignoring colors
         pcd = o3d.geometry.PointCloud()
-        with open(ply_path, 'r') as f:
+        with open(ply_path, "r") as f:
             lines = f.readlines()
 
         # parse header to find number of vertices and properties, then parse manually skipping colors
@@ -46,6 +47,7 @@ def load_ply_vertices_only(ply_path):
         points = np.array(points_list, dtype=np.float32)
         return points
 
+
 # Replace the dataset __init__ with this function
 class PlyPointCloudDataset(torch.utils.data.Dataset):
     def __init__(self, ply_file):
@@ -56,4 +58,3 @@ class PlyPointCloudDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         return torch.tensor(self.points)
-

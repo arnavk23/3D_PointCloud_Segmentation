@@ -6,7 +6,7 @@ root = "data/shapenet_part"  # update this to your dataset root path
 # Load category name <-> synset ID mappings
 synset_to_cat = {}
 cat_to_synset = {}
-with open(os.path.join(root, 'synsetoffset2category.txt'), 'r') as f:
+with open(os.path.join(root, "synsetoffset2category.txt"), "r") as f:
     for line in f:
         cat_name, synset = line.strip().split()
         synset_to_cat[synset] = cat_name
@@ -14,14 +14,16 @@ with open(os.path.join(root, 'synsetoffset2category.txt'), 'r') as f:
 
 # Load train split JSON (example)
 split = "train"
-file_list_path = os.path.join(root, 'train_test_split', f'shuffled_{split}_file_list.json')
-with open(file_list_path, 'r') as f:
+file_list_path = os.path.join(
+    root, "train_test_split", f"shuffled_{split}_file_list.json"
+)
+with open(file_list_path, "r") as f:
     file_list = json.load(f)
 
 file_paths = []
 for file_path in file_list:
     file_path = file_path.strip().strip('"')
-    parts = file_path.split('/')
+    parts = file_path.split("/")
     if len(parts) == 3:
         category_name, _, instance_id = parts
         if category_name not in cat_to_synset:
@@ -38,4 +40,3 @@ for file_path in file_list:
         print(f"[WARN] Malformed file path: {file_path}")
 
 print(f"Total valid files found: {len(file_paths)}")
-

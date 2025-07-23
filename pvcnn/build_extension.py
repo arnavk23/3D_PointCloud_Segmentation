@@ -10,4 +10,3 @@ pvcnn_backend = load(
     extra_cflags=["-O3", "-std=c++17", "-I/usr/include"],
     verbose=True,
 )
-
