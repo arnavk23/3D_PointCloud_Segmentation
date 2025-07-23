@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/username/geoai4cities/blob/main/README.md
+    about: Check the comprehensive documentation and setup guides
+  - name: General Discussion
+    url: https://github.com/yourusername/geoai4cities/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 🎓 Research Group
+    url: https://geoai4cities.example.com
+    about: Visit the GeoAI4Cities research group website

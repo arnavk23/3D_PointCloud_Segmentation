@@ -1,0 +1,75 @@
+name: Bug Report
+description: Report a bug or issue with the project
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this bug! Please fill out the information below to help us understand and reproduce the issue.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component is affected?
+      options:
+        - LaTeX Compilation
+        - Model Implementation (PointNet)
+        - Model Implementation (PVCNN)
+        - Model Implementation (SONATA)
+        - Model Implementation (RandLA-Net)
+        - ZED Camera Integration
+        - Jetson Deployment
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of the bug
+      placeholder: Describe what happened and what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Run command '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Information about your environment
+      placeholder: |
+        - OS: [e.g., Ubuntu 20.04]
+        - Python version: [e.g., 3.8.10]
+        - CUDA version: [e.g., 11.8]
+        - Hardware: [e.g., RTX 3070, Jetson Xavier NX]
+        - PyTorch version: [e.g., 1.13.0]
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Logs
+      description: Relevant error messages or logs
+      render: shell
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any additional context about the problem
