@@ -6,6 +6,7 @@ from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import open3d as o3d
 
+
 # Dataset for single PLY file point cloud
 class PlyPointCloudDataset(Dataset):
     def __init__(self, ply_file):
@@ -19,6 +20,7 @@ class PlyPointCloudDataset(Dataset):
 
     def __getitem__(self, idx):
         return torch.tensor(self.points)  # (N, 3)
+
 
 # Updated PointNetSegmentation model
 class PointNetSegmentation(nn.Module):
@@ -55,14 +57,17 @@ class PointNetSegmentation(nn.Module):
         global_feat_expand = global_feat.repeat(1, 1, x.size(2))  # (batch, 1024, N)
 
         # concat local and global features
-        x_concat = torch.cat([local_feat, global_feat_expand], dim=1)  # (batch, 1152, N)
+        x_concat = torch.cat(
+            [local_feat, global_feat_expand], dim=1
+        )  # (batch, 1152, N)
         x_concat = x_concat.permute(0, 2, 1)  # (batch, N, 1152)
 
         x = F.relu(self.bn4(self.fc1(x_concat)))  # (batch, N, 512)
-        x = F.relu(self.bn5(self.fc2(x)))         # (batch, N, 256)
-        x = self.fc3(x)                           # (batch, N, num_classes)
+        x = F.relu(self.bn5(self.fc2(x)))  # (batch, N, 256)
+        x = self.fc3(x)  # (batch, N, num_classes)
 
         return x
+
 
 def segment_ply(ply_path, model, device, class_names):
     model.eval()
@@ -72,12 +77,14 @@ def segment_ply(ply_path, model, device, class_names):
     with torch.no_grad():
         for points in loader:
             points = points.to(device)  # (1, N, 3)
-            outputs = model(points)     # (1, N, num_classes)
+            outputs = model(points)  # (1, N, num_classes)
             preds = outputs.argmax(dim=2).squeeze(0).cpu().numpy()  # (N,)
 
             print(f"Segmented {len(preds)} points.")
             for cls_idx in np.unique(preds):
-                print(f"Class '{class_names[cls_idx]}' points: {(preds == cls_idx).sum()}")
+                print(
+                    f"Class '{class_names[cls_idx]}' points: {(preds == cls_idx).sum()}"
+                )
 
             # Load original point cloud again to preserve colors
             pcd = o3d.io.read_point_cloud(ply_path)
@@ -93,12 +100,16 @@ def segment_ply(ply_path, model, device, class_names):
                 "Truck": [1.0, 1.0, 0.0],
                 "Misc": [1.0, 0.0, 1.0],
             }
-            colors = np.array([color_map.get(class_names[p], [0, 0, 0]) for p in preds], dtype=np.float32)
+            colors = np.array(
+                [color_map.get(class_names[p], [0, 0, 0]) for p in preds],
+                dtype=np.float32,
+            )
             pcd_segmented.colors = o3d.utility.Vector3dVector(colors)
 
             output_path = os.path.splitext(ply_path)[0] + "_segmented.ply"
             o3d.io.write_point_cloud(output_path, pcd_segmented)
             print(f"Saved segmented point cloud to: {output_path}")
+
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -114,6 +125,6 @@ def main():
     ply_path = "/home/intern/Desktop/zed_out.ply"  # Update your path here
     segment_ply(ply_path, model, device, class_names)
 
+
 if __name__ == "__main__":
     main()
-
