@@ -1,0 +1,14 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Development environment setup}}{3}{figure.caption.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Point cloud visualization with semantic class color coding}}{5}{figure.caption.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Training progress with loss convergence and accuracy metrics}}{6}{figure.caption.3}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Model performance analysis and profiling session}}{8}{figure.caption.6}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Real-time segmentation on Jetson Xavier NX}}{8}{figure.caption.7}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Performance optimization workflow and monitoring}}{9}{figure.caption.9}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

@@ -1,0 +1,56 @@
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+.env
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Model checkpoints and data
+*.pth
+*.pkl
+*.h5
+*.weights
+
+# Large datasets
+data/
+datasets/
+*.zip
+*.tar.gz
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/

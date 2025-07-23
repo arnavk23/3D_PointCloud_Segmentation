@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Internship_Report_Concise.aux
+The style file: ieeetr.bst
+Database file #1: references.bib
+Warning--empty journal in armeni2016s3dis
+You've used 8 entries,
+            1876 wiz_defined-function locations,
+            519 strings with 5318 characters,
+and the built_in function-call counts, 2747 in all, are:
+= -- 240
+> -- 153
+< -- 0
++ -- 54
+- -- 46
+* -- 204
+:= -- 392
+add.period$ -- 8
+call.type$ -- 8
+change.case$ -- 8
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 133
+empty$ -- 246
+format.name$ -- 46
+if$ -- 648
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 7
+newline$ -- 27
+num.names$ -- 8
+pop$ -- 46
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 95
+stack$ -- 0
+substring$ -- 200
+swap$ -- 56
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 23
+width$ -- 9
+write$ -- 71
+(There was 1 warning)

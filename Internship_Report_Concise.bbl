@@ -1,0 +1,46 @@
+\begin{thebibliography}{1}
+
+\bibitem{qi2017pointnet}
+C.~R. Qi, H.~Su, K.~Mo, and L.~J. Guibas, ``Pointnet: Deep learning on point
+  sets for 3d classification and segmentation,'' in {\em Proceedings of the
+  IEEE Conference on Computer Vision and Pattern Recognition}, pp.~652--660,
+  2017.
+
+\bibitem{qi2017pointnetplus}
+C.~R. Qi, L.~Yi, H.~Su, and L.~J. Guibas, ``Pointnet++: Deep hierarchical
+  feature learning on point sets in a metric space,'' in {\em Advances in
+  Neural Information Processing Systems}, pp.~5099--5108, 2017.
+
+\bibitem{liu2019point}
+Z.~Liu, H.~Tang, Y.~Lin, and S.~Han, ``Point-voxel cnn for efficient 3d deep
+  learning,'' {\em Advances in Neural Information Processing Systems}, vol.~32,
+  2019.
+
+\bibitem{hu2020randla}
+Q.~Hu, B.~Yang, L.~Xie, S.~Rosa, Y.~Guo, Z.~Wang, N.~Trigoni, and A.~Markham,
+  ``Randla-net: Efficient semantic segmentation of large-scale point clouds,''
+  in {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition}, pp.~11108--11117, 2020.
+
+\bibitem{facebook2023sonata}
+{Facebook Research}, ``Sonata: A framework for efficient point cloud
+  processing.'' GitHub Repository, 2023.
+
+\bibitem{chang2015shapenet}
+A.~X. Chang, T.~Funkhouser, L.~Guibas, P.~Hanrahan, Q.~Huang, Z.~Li,
+  S.~Savarese, M.~Savva, S.~Song, H.~Su, {\em et~al.}, ``Shapenet: An
+  information-rich 3d model repository,'' {\em arXiv preprint
+  arXiv:1512.03012}, 2015.
+
+\bibitem{armeni2016s3dis}
+I.~Armeni, O.~Sener, A.~R. Zamir, H.~Jiang, I.~Brilakis, M.~Fischer, and
+  S.~Savarese, ``3d semantic parsing of large-scale indoor spaces,''
+  pp.~1534--1543, 2016.
+
+\bibitem{behley2019semantickitti}
+J.~Behley, M.~Garbade, A.~Milioto, J.~Quenzel, S.~Behnke, C.~Stachniss, and
+  J.~Gall, ``Semantickitti: A dataset for semantic scene understanding of lidar
+  sequences,'' in {\em Proceedings of the IEEE/CVF International Conference on
+  Computer Vision}, pp.~9297--9307, 2019.
+
+\end{thebibliography}

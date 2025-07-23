@@ -1,0 +1,76 @@
+name: Compile LaTeX Report
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**.tex'
+      - 'references.bib'
+      - 'figures/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**.tex'
+      - 'references.bib'
+      - 'figures/**'
+
+jobs:
+  compile-latex:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install LaTeX dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          texlive-latex-base \
+          texlive-latex-recommended \
+          texlive-latex-extra \
+          texlive-fonts-recommended \
+          texlive-fonts-extra \
+          texlive-bibtex-extra \
+          biber
+    
+    - name: Compile LaTeX document
+      run: |
+        # First compilation
+        pdflatex Internship_Report_3D_PointCloud_Segmentation.tex
+        
+        # Process bibliography
+        bibtex Internship_Report_3D_PointCloud_Segmentation
+        
+        # Second compilation (resolve citations)
+        pdflatex Internship_Report_3D_PointCloud_Segmentation.tex
+        
+        # Final compilation (resolve cross-references)
+        pdflatex Internship_Report_3D_PointCloud_Segmentation.tex
+    
+    - name: Check PDF generation
+      run: |
+        if [ -f "Internship_Report_3D_PointCloud_Segmentation.pdf" ]; then
+          echo "PDF successfully generated"
+          ls -la *.pdf
+        else
+          echo "❌ PDF generation failed"
+          exit 1
+        fi
+    
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: internship-report-pdf
+        path: Internship_Report_3D_PointCloud_Segmentation.pdf
+        retention-days: 30
+    
+    - name: Upload compilation logs
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: compilation-logs
+        path: |
+          *.log
+          *.blg
+        retention-days: 7
